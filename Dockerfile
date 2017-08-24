@@ -26,17 +26,6 @@ RUN apt-get update && apt-get install -y apt-utils && \
 	apt-get install -y $(cat packages.needed.01.filtered.txt) && \
 	rm -rf /var/lib/apt/lists/* ;
 
-# tini is a zombie process reaper
-# <https://github.com/krallin/tini>
-ARG command_tini=/bin/tini
-ARG command_tini_version=0.14.0
-ARG command_tini_sha256sum=6c41ec7d33e857d4779f14d9c74924cab0c7973485d2972419a3b7c7620ff5fd
-ARG command_tini_url=https://github.com/krallin/tini/releases/download/v${command_tini_version}/tini-static-amd64
-
-RUN curl -fsSL -o "${command_tini}" "${command_tini_url}" && \
-	(echo "$command_tini_sha256sum  ${command_tini}" | shasum -a 256 -c -) && \
-	chmod +x "${command_tini}" ;
-
 ##
 
 USER    root

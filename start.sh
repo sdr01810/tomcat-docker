@@ -49,9 +49,6 @@ sync_directory_pair "${tomcat_docker_image_ref_webapps_root}" "${tomcat_docker_i
 
 ##
 
-export TINI_SUBREAPER=
-#^-- mere existence indicates 'true'
-
 echo
 echo "Environment variables:"
 xx :
@@ -76,7 +73,6 @@ else
 	echo "Launching Tomcat ${TOMCAT_VERSION}..."
 	xx :
 	xx exec "${tomcat}" "${action}" "$@"
-##	xx exec tini -- "${tomcat}" "${action}" "$@"
 fi
 
 ##
